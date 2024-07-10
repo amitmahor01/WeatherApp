@@ -2,27 +2,42 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Highlights from "./Components/Highlights";
 import Search from "./Components/Search";
+import { getWeatherDataAPI } from "./service/weather";
 
+const WEATHER_API = process.env.REACT_APP_WEATHER_API_URL;
+console.warn("weather api url ", WEATHER_API);
 function App() {
   const [city, setCity] = useState("Jhansi");
   const [weatherData, setWeatherData] = useState(null);
   const apiURL = `https://api.weatherapi.com/v1/current.json?key=9739825703ae43409cf170748240507&q=${city}&aqi=yes`;
 
   useEffect(() => {
-    fetch(apiURL)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error! ");
+    // fetch(apiURL)
+    //   .then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error("Error! ");
+    //     }
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //     setWeatherData(data);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+
+    getWeatherDataAPI(city).then((response) => {
+      console.warn("response ", response);
+      if (response) {
+        if(response.status === 200){
+          setWeatherData(response.data);
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setWeatherData(data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+      }
+    }).catch((e)=>{
+      console.error("error ",e);
+    });
+
   }, [city]);
 
   return (
