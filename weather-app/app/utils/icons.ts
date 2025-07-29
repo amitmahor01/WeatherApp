@@ -1,53 +1,31 @@
-import { 
-  faThermometerHalf, 
-  faThermometerEmpty, 
-  faWind, 
-  faTachometerAlt,
-  faTint, 
-  faEye, 
-  faCloud, 
-  faCloudRain, 
-  faSnowflake, 
-  faSun, 
-  faMoon, 
-  faMapMarkerAlt,
-  faCompass,
-  faThermometerThreeQuarters,
-  faThermometerQuarter,
-  faThermometerFull
+import {
+  faThermometerHalf, faThermometerEmpty, faWind, faTachometerAlt,
+  faTint, faEye, faCloud, faCloudRain, faSnowflake, faSun,
+  faMoon, faMapMarkerAlt, faCompass, faThermometerThreeQuarters
 } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export const weatherIcons = {
-  // Temperature related
   temperature: faThermometerHalf,
   temperatureRange: faThermometerEmpty,
   feelsLike: faThermometerThreeQuarters,
-  
-  // Wind related
   windSpeed: faWind,
   windGust: faTachometerAlt,
   windDirection: faCompass,
-  
-  // Atmospheric
   humidity: faTint,
   visibility: faEye,
   airPressure: faTachometerAlt,
   cloudCover: faCloud,
-  
-  // Precipitation
   rain: faCloudRain,
   snow: faSnowflake,
-  
-  // Sun/Moon
   sunrise: faSun,
   sunset: faMoon,
-  
-  // Location
   coordinates: faMapMarkerAlt,
+  details: faThermometerHalf, // Default for detailed info header
 };
 
-export const getWeatherIcon = (metric: string) => {
-  const iconMap: { [key: string]: any } = {
+export const getWeatherIcon = (metric: string): IconDefinition => {
+  const iconMap: { [key: string]: IconDefinition } = {
     'temperature range': weatherIcons.temperatureRange,
     'feels like': weatherIcons.feelsLike,
     'wind speed': weatherIcons.windSpeed,
@@ -63,7 +41,7 @@ export const getWeatherIcon = (metric: string) => {
     'sunrise': weatherIcons.sunrise,
     'sunset': weatherIcons.sunset,
     'coordinates': weatherIcons.coordinates,
+    'details': weatherIcons.details,
   };
-  
-  return iconMap[metric.toLowerCase()] || weatherIcons.temperature;
+  return iconMap[metric.toLowerCase()] || faThermometerHalf;
 }; 

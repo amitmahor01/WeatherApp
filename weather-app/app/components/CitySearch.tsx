@@ -12,6 +12,14 @@ interface CitySearchProps {
   locationLoading: boolean;
 }
 
+interface GeocodingResponse {
+  name: string;
+  country: string;
+  state?: string;
+  lat: number;
+  lon: number;
+}
+
 function CitySearch({ onCitySelect, onGetLocation, locationLoading }: CitySearchProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<CitySuggestion[]>([]);
@@ -38,7 +46,7 @@ function CitySearch({ onCitySelect, onGetLocation, locationLoading }: CitySearch
         const data = await getCitySuggestions(query);
         console.log('City suggestions:', data);
         
-        const citySuggestions: CitySuggestion[] = data.map((city: any) => ({
+        const citySuggestions: CitySuggestion[] = data.map((city: GeocodingResponse) => ({
           name: city.name,
           country: city.country,
           state: city.state,

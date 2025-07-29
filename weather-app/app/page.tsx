@@ -27,8 +27,9 @@ export default function Home() {
     try {
       const data = await getWeatherDataAPI(cityName);
       setWeatherData(data);
-    } catch (e: any) {
-      setError(e.message || "Error fetching weather data");
+    } catch (e: unknown) {
+      const errorMessage = e instanceof Error ? e.message : "Error fetching weather data";
+      setError(errorMessage);
       console.error("error ", e);
     } finally {
       setLoading(false);
@@ -43,8 +44,9 @@ export default function Home() {
       const data = await getWeatherByCoordinates(coords.lat, coords.lon);
       setWeatherData(data);
       setCity(data.name);
-    } catch (e: any) {
-      setError(e.message || "Error getting location or fetching weather data");
+    } catch (e: unknown) {
+      const errorMessage = e instanceof Error ? e.message : "Error getting location or fetching weather data";
+      setError(errorMessage);
       console.error("error ", e);
     } finally {
       setLoading(false);
@@ -161,7 +163,6 @@ export default function Home() {
               {weatherData && (
                 <WeatherDetails 
                   weatherData={weatherData}
-                  getWindDirection={getWindDirection}
                   formatSunTime={formatSunTime}
                 />
               )}

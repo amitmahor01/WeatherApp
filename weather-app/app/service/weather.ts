@@ -1,5 +1,13 @@
 import { WeatherData } from "../types/weather";
 
+interface GeocodingResponse {
+  name: string;
+  country: string;
+  state?: string;
+  lat: number;
+  lon: number;
+}
+
 /**
  * Weather service functions using Next.js API routes
  */
@@ -38,7 +46,7 @@ export const getWeatherByCoordinates = async (lat: number, lon: number): Promise
   }
 };
 
-export const getCitySuggestions = async (query: string): Promise<any[]> => {
+export const getCitySuggestions = async (query: string): Promise<GeocodingResponse[]> => {
   try {
     const response = await fetch(`/api/geocode?q=${encodeURIComponent(query)}&limit=5`);
     

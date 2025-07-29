@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import WeatherAnimation from "./WeatherAnimation";
 
 interface WeatherDisplayProps {
@@ -25,9 +26,11 @@ function WeatherDisplay({
       {/* Weather Icon */}
       <div className="flex justify-center mb-4">
         <div className="bg-white/10 backdrop-blur-sm rounded-full p-4">
-          <img 
-            src={conditionIcon} 
-            alt="weather condition" 
+          <Image
+            src={conditionIcon}
+            alt="weather condition"
+            width={64}
+            height={64}
             className="w-16 h-16"
           />
         </div>
