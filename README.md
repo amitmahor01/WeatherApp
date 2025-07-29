@@ -6,6 +6,8 @@ A modern, responsive weather application built with Next.js, TypeScript, and Tai
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
 
+<img width="1080" height="485" alt="image" src="https://github.com/user-attachments/assets/77c67e9c-7846-4cae-8507-f0f51fc81ab3" />
+
 ## ✨ Features
 
 - 🌍 **Real-time Weather Data** - Get current weather information for any location
